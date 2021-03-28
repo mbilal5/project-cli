@@ -4,20 +4,22 @@ PARAM(
 	[switch]
 	$bootstrap = $false,
 	[switch]
-	$jquery = $false
+	$jquery = $false,
+	[Parameter(Position=0)]
+	[string] $action = $null
 )
 
-if ($aspnet)
-{
-	Copy-Item -Path $PSScriptRoot/aspnetcore/* -Destination . -Recurse
-}
 
-if ($bootstrap)
-{
-	Copy-Item -Path $PSScriptRoot/bootstrap/* -Destination . -Recurse
-}
 
-if ($jquery)
+switch($action)
 {
-	Copy-Item -Path $PSScriptRoot/jquery/jquery.js -Destination .
+	create 
+	{
+		. "$PSScriptRoot/new-project" -aspnet:$aspnet -bootstrap:$bootstrap -jquery:$jquery
+	}
+	
+	default
+	{
+		Write-Host "// todo: Usage"
+	}
 }
