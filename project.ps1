@@ -5,10 +5,13 @@ PARAM(
 	$bootstrap = $false,
 	[switch]
 	$jquery = $false,
+	[switch]
+	$fontawesome = $false,
 	[Parameter(Position=0)]
 	[string] $action = $null,
 	[Parameter(Position=1)]
-	[string] $target = ""
+	[string] $target = "",
+	[string] $destination = ""
 )
 
 
@@ -17,7 +20,14 @@ switch($action)
 {
 	create 
 	{
-		. "$PSScriptRoot/new-project" -aspnet:$aspnet -bootstrap:$bootstrap -jquery:$jquery
+		if ($destination)
+		{
+			. "$PSScriptRoot/new-project" -aspnet:$aspnet -bootstrap:$bootstrap -jquery:$jquery -fontawesome:$fontawesome -destination $destination
+		}
+		else
+		{
+			. "$PSScriptRoot/new-project" -aspnet:$aspnet -bootstrap:$bootstrap -jquery:$jquery -fontawesome:$fontawesome
+		}
 	}
 	
 	run

@@ -4,7 +4,10 @@ PARAM(
 	[switch]
 	$bootstrap = $false,
 	[switch]
-	$jquery = $false
+	$jquery = $false,
+	[switch]
+	$fontawesome = $false,
+	[string] $destination = "."
 )
 
 
@@ -22,4 +25,9 @@ if ($bootstrap)
 if ($jquery)
 {
 	Copy-Item -Path $PSScriptRoot/jquery/jquery.js -Destination .
+}
+
+if ($fontawesome)
+{
+	Copy-Item -Path $PSScriptRoot/fontawesome -Destination $destination -Recurse
 }
