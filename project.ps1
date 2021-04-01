@@ -20,13 +20,18 @@ switch($action)
 {
 	create 
 	{
+		. "$PSScriptRoot/new-project" -aspnet:$aspnet
+	}
+	
+	add 
+	{
 		if ($destination)
 		{
-			. "$PSScriptRoot/new-project" -aspnet:$aspnet -bootstrap:$bootstrap -jquery:$jquery -fontawesome:$fontawesome -destination $destination
+			. "$PSScriptRoot/add-projectresource" -aspnet:$aspnet -bootstrap:$bootstrap -jquery:$jquery -fontawesome:$fontawesome -destination $destination
 		}
 		else
 		{
-			. "$PSScriptRoot/new-project" -aspnet:$aspnet -bootstrap:$bootstrap -jquery:$jquery -fontawesome:$fontawesome
+			. "$PSScriptRoot/add-projectresource" -aspnet:$aspnet -bootstrap:$bootstrap -jquery:$jquery -fontawesome:$fontawesome
 		}
 	}
 	
